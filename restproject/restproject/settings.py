@@ -142,7 +142,16 @@ SIMPLE_JWT = {
 #     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 # }
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
-}
+
+# global  pagination
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#     'PAGE_SIZE': 5
+# }
+
+
+# how to disable browsable api in production data
+# REST_FRAMEWORK = {
+#
+#     'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',)
+# }

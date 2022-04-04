@@ -49,6 +49,11 @@ urlpatterns = [
     # username wise filter data
     path('studentfilter2/', views.StudentFilter2.as_view()),
 
+    # pagination
+    path('StudentPagination/', views.StudentPagination.as_view()),
+    path('StudentPagination1/', views.StudentPagination1.as_view()),
+    path('StudentPagination2/', views.StudentPagination2.as_view()),
+
 
 
 

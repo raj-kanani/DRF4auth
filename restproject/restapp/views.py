@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny, \
 from .custompermission import MyPermission
 from .customauth import CustomAuth
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination, CursorPagination
 
 
 # used default permission and authentication classes
@@ -151,3 +152,47 @@ class StudentFilter2(ListAPIView):
         if username is not None:
             queryset = queryset.filter(passby=username)
         return queryset
+
+
+# # paginaton area
+
+
+# subclass of pagenumberpagination
+class Mypage(PageNumberPagination):
+    page_size = 3
+    # replace the page to pg
+    page_query_param = 'pg'  # url in pg=last to move on last page
+    # client require specific page in no. of data
+    page_size_query_param = 'record'
+    # user can max page size no. of usage
+    max_page_size = 5
+
+
+class StudentPagination(ListAPIView):
+    queryset = Student1.objects.all()
+    serializer_class = Student1Serializer
+    pagination_class = Mypage
+
+
+#  Use of LimitOffsetPagination
+# http://127.0.0.1:8000/StudentPagination1/?limit=4&offset=4
+# - offset=4 means data start will be next on 4 number.
+class Mypage1(LimitOffsetPagination):
+    pass
+
+
+class StudentPagination1(ListAPIView):
+    queryset = Student1.objects.all()
+    serializer_class = StudentSerializer
+    pagination_class = Mypage1
+
+
+# use of cursor pagination
+class Mypage2(CursorPagination):
+    page_size = 3
+    ordering = 'roll'
+
+class StudentPagination2(ListAPIView):
+    queryset = Student1.objects.all()
+    serializer_class = Student1Serializer
+    pagination_class = Mypage2
