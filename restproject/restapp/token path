@@ -1,0 +1,28 @@
+# token terminal path :
+ token get : - http POST http://127.0.0.1:8000/getjwt/ username="plutus" password="rajkanani"
+
+ token verify : - ( http POST http://127.0.0.1:8000/verifyjwt/
+                            token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+                            .eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4ODE3M
+                            TYzLCJpYXQiOjE2NDg4MTY4NjMsImp0aSI6ImQ0ODBkNmM4OGRhMzQyZm
+                            RhOTcyOGY1MDkxZDMyNTZmIiwidXNlcl9pZCI6OH0.kPCNPjb_cAcl7SR0K4V
+                            v51E3ldAffu8Fv_By8GgN8zA" )
+
+
+ token refresh : - ( http://127.0.0.1:8000/refreshjwt/ refresh="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+                      .eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY0ODkwMjE3NCwiaWF0IjoxNjQ4ODE1Nzc0LC
+                      JqdGkiOiI3YWZjODRkYTgxOGM0NjExYTk4MmY4ZDBjYjk0NTMxOCIsInVzZXJfaWQiOjh9
+                      .Pgfz51uUr64ldf2duuKiatFT0BnsMc6Y8DsdgYODJlg" )
+
+
+# httpie using token
+
+    put token : -  http PUT http://127.0.0.1:8000/mytoken1/2/
+                    name=alpesh roll=112 city=mumbai '
+                    Authorization:Token c526d34cb7343193173d39d76ec1cc5e77cc683a'
+
+    delete token : - http DELETE http://127.0.0.1:8000/mytok
+
+
+    show student data : - http http://127.0.0.1:8000/mytoken1/
+

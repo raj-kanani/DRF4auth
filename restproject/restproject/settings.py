@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'django_filters',
     'restapp',
 
@@ -131,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': True
 
 }
@@ -164,6 +165,6 @@ REST_FRAMEWORK = {
         'anon': '2/day',
         'user': '3/hour',
         'newset': '3/minute',
-        'crudstudent': '4/hour'
+        'crudstudent': '1/minute',
     }
 }

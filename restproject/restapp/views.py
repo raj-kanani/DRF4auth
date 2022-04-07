@@ -220,3 +220,4 @@ class StudentThrottle(viewsets.ModelViewSet):
     # throttle_classes = [AnonRateThrottle, UserRateThrottle]
     # throttle_classes = [AnonRateThrottle, SetThrottle]
     throttle_classes = [ScopedRateThrottle]  # global generate throttle
+
