@@ -13,7 +13,12 @@ router.register('StudentModel2', views.StudentModel2, basename='mystudent2')
 router.register('mysession', views.StudentSession, basename='mysession')
 router.register('mycustom', views.StudentCustom, basename='mycustom')
 router.register('mytoken1', views.StudentToken1, basename='mytoken1')
+# authentication
 router.register('myauth', views.StudentAuth, basename='myauth')
+
+
+# throttle
+router.register('StudentThrottle', views.StudentThrottle, basename='StudentThrottle')
 
 urlpatterns = [
 
@@ -53,6 +58,7 @@ urlpatterns = [
     path('StudentPagination/', views.StudentPagination.as_view()),
     path('StudentPagination1/', views.StudentPagination1.as_view()),
     path('StudentPagination2/', views.StudentPagination2.as_view()),
+
 
 
 

@@ -155,3 +155,15 @@ SIMPLE_JWT = {
 #
 #     'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',)
 # }
+
+
+# throttle area
+REST_FRAMEWORK = {
+
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '2/day',
+        'user': '3/hour',
+        'newset': '3/minute',
+        'crudstudent': '4/hour'
+    }
+}

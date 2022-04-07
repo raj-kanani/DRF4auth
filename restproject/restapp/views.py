@@ -1,6 +1,9 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from .customthrottle import SetThrottle
 from rest_framework import viewsets, filters
 from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle, ScopedRateThrottle
 from .custompermission import MyPermission
 from .models import Student, Student1
 from .serializers import StudentSerializer, Student1Serializer
@@ -192,7 +195,28 @@ class Mypage2(CursorPagination):
     page_size = 3
     ordering = 'roll'
 
+
 class StudentPagination2(ListAPIView):
     queryset = Student1.objects.all()
     serializer_class = Student1Serializer
     pagination_class = Mypage2
+
+
+# versioning in rest-framework
+#
+# class StudentVVersioning(ListAPIView):
+#     def get(self, request):
+#         queryset = Student1.objects.all()
+#         serializer = Student1Serializer(queryset, many=True, context={'request': request})
+#         return Response({'student1': serializer.data})
+
+
+#  throttle area
+class StudentThrottle(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+    # throttle_classes = [AnonRateThrottle, UserRateThrottle]
+    # throttle_classes = [AnonRateThrottle, SetThrottle]
+    throttle_classes = [ScopedRateThrottle]  # global generate throttle
